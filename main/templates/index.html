@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Price Prediction</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #4b79a1, #283e51);
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #283e51;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: #f8f9fa;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .output {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .increase {
+            color: #388e3c;
+            background-color: #e8f5e9;
+            border: 2px solid #388e3c;
+        }
+
+        .decrease {
+            color: #d32f2f;
+            background-color: #ffebee;
+            border: 2px solid #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Bitcoin Price Prediction</h2>
+    <label for="openCloseDiff">Open-Close Difference:</label>
+    <input type="number" id="openCloseDiff" placeholder="Enter open-close difference">
+
+    <label for="lowHighDiff">Low-High Difference:</label>
+    <input type="number" id="lowHighDiff" placeholder="Enter low-high difference">
+
+    <label for="endOfQuarter">End of Quarter:</label>
+    <select id="endOfQuarter">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
+
+    <button onclick="predict()">Predict</button>
+
+    <div id="output" class="output"></div>
+</div>
+
+<script>
+    function predict() {
+        const openCloseDiff = parseFloat(document.getElementById('openCloseDiff').value);
+        const lowHighDiff = parseFloat(document.getElementById('lowHighDiff').value);
+        const endOfQuarter = document.getElementById('endOfQuarter').value;
+
+        let prediction = "";
+
+        // Basic logic for prediction based on the criteria
+        if (openCloseDiff > 0 && (endOfQuarter === "yes" || lowHighDiff > 0)) {
+            prediction = "<span class='increase'>Increase</span>";
+        } else {
+            prediction = "<span class='decrease'>Decrease</span>";
+        }
+
+        document.getElementById('output').innerHTML = "Prediction: " + prediction;
+    }
+</script>
+
+</body>
+</html>
